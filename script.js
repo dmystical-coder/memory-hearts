@@ -43,13 +43,63 @@ function flipCard(event) {
     card.classList.add("flipped");
     flippedCards.push(card);
     if (flippedCards.length === 2) {
-    //   checkMatch();
+      checkMatch();
     console.log("it is match");
         }
     }
 }
 
 // logic to check if the cards match
+// 1. access the flipped cards []= grab each card and store
+// 2. check if the values of the cards match
+// 3. if the values match, add the "matched" class to the cards
+// 4. push the matchedCards array
+// 5. empty flippedCards array
+// 6. if the matchedCards array has all the cards, display a message (all cards matched) 
+// -- we could use alert, but set timeout can be used to delay the message
+// 7. else there is no match unflip (change the text content of each card back to ?
+// and remove from the classList "flipped")
+// 8.. call the func in flipCard
+
+// Activity 1: Attempt to implement the checkMatch function (10 mins) submit in slack when done
+
+function checkMatch (){
+    const [card1, card2] = flippedCards;
+    if(card1.dataset.value === card2.dataset.value){
+        card1.classList.add("matched");
+        card2.classList.add("matched");
+        matchedCards.push(card1, card2);
+        flippedCards = [];
+        if(matchedCards.length === cards.length){
+            setTimeout(() =>{
+                alert("🥳🥳 Yay! You've matched all the hearts! Happy Valentine!❤️")
+            }, 600);
+        }
+    }else{
+        setTimeout(() => {
+        card1.textContent = "?";
+        card2.textContent = "?";
+        card1.classList.remove("flipped");
+        card2.classList.remove("flipped");
+        flippedCards = [];
+        }, 1000);
+    }
+}
+
+
+// 1. to reset game we are resetting is the game board
+// 2. get the #game-board element 
+// 3. empty the element
+// 4. empty flippedCards and matchedCards
+// 5. call createBoard()
+
+function resetGame(){
+    const gameBoard = document.getElementById("game-board");
+    gameBoard.innerHTML = "";
+    flippedCards = [];
+    matchedCards = [];
+    createBoard();
+}
 
 createBoard();
 

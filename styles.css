@@ -52,7 +52,7 @@ body {
     cursor: default;
   }
   
-  #reset-button {
+  .reset-button {
     background-color: #d32f2f;
     color: white;
     border: none;
@@ -63,6 +63,6 @@ body {
     transition: background-color 0.3s ease;
   }
   
-  #reset-button:hover {
+  .reset-button:hover {
     background-color: #b71c1c; 
   }
