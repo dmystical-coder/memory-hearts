@@ -20,10 +20,16 @@ function createBoard() {
     cardElement.dataset.index = index;
     cardElement.dataset.value = card;
     cardElement.textContent = "?";
-    cardElement.addEventListener("click", flipCard);
     gameBoard.appendChild(cardElement);
   });
+  // Moved the event listener to the createBoard function instead of adding it to the individual card elements
+  gameBoard.addEventListener("click", function(event) {
+    if (event.target.classList.contains("card")) {
+      flipCard(event);
+    }
+  });
 }
+
 // flipcard logic
 // 1. listen for the event target and store it
 // 2. card shoud flip if it meets the following conditions:
@@ -102,4 +108,3 @@ function resetGame(){
 }
 
 createBoard();
-
